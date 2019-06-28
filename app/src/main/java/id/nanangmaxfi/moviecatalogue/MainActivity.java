@@ -1,8 +1,11 @@
 package id.nanangmaxfi.moviecatalogue;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,6 +27,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         presenter = new MainPresenter(this, getApplicationContext());
         listView = findViewById(R.id.lv_list);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                presenter.clickDetail(position);
+            }
+        });
     }
 
     @Override
@@ -39,7 +49,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void selectMovie() {
-
+    public void selectMovie(Movie movie) {
+        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        intent.putExtra(DetailActivity.EXTRA_MOVIE, movie);
+        startActivity(intent);
     }
 }

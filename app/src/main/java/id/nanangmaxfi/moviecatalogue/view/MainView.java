@@ -6,5 +6,5 @@ import id.nanangmaxfi.moviecatalogue.model.Movie;
 
 public interface MainView {
     void showList(ArrayList<Movie> movies);
-    void selectMovie();
+    void selectMovie(Movie movie);
 }

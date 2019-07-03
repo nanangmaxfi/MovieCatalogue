@@ -1,57 +1,52 @@
 package id.nanangmaxfi.moviecatalogue;
 
-import android.content.Intent;
-import android.content.res.TypedArray;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.view.MenuItem;
 
-import java.util.ArrayList;
+import id.nanangmaxfi.moviecatalogue.fragment.MovieFragment;
+import id.nanangmaxfi.moviecatalogue.fragment.TvFragment;
 
-import id.nanangmaxfi.moviecatalogue.adapter.MovieAdapter;
-import id.nanangmaxfi.moviecatalogue.model.Movie;
-import id.nanangmaxfi.moviecatalogue.presenter.MainPresenter;
-import id.nanangmaxfi.moviecatalogue.view.MainView;
-
-public class MainActivity extends AppCompatActivity implements MainView {
-
-    private MainPresenter presenter;
-    private ListView listView;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
 
-        presenter = new MainPresenter(this, getApplicationContext());
-        listView = findViewById(R.id.lv_list);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                presenter.clickDetail(position);
+        if (savedInstanceState == null){
+            navigation.setSelectedItemId(R.id.nav_movie);
+        }
+
+    }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment;
+            switch (item.getItemId()) {
+                case R.id.nav_movie:
+                    fragment = new MovieFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container_layout, fragment, fragment.getClass().getSimpleName())
+                            .commit();
+                    return true;
+                case R.id.nav_tv:
+                    fragment = new TvFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container_layout, fragment, fragment.getClass().getSimpleName())
+                            .commit();
+                    return true;
             }
-        });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        presenter.load();
-    }
-
-    @Override
-    public void showList(ArrayList<Movie> movies) {
-        MovieAdapter adapter = new MovieAdapter(getApplicationContext(), movies);
-        listView.setAdapter(adapter);
-    }
-
-    @Override
-    public void selectMovie(Movie movie) {
-        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-        intent.putExtra(DetailActivity.EXTRA_MOVIE, movie);
-        startActivity(intent);
-    }
+            return false;
+        }
+    };
 }

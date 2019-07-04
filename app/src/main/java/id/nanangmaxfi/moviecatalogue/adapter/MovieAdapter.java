@@ -25,15 +25,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         this.movies = movies;
     }
 
-    public ArrayList<Movie> getMovies() {
+    private ArrayList<Movie> getMovies() {
         return movies;
     }
-
-    public void setMovies(ArrayList<Movie> movies) {
-        this.movies = movies;
-    }
-
-
 
     @NonNull
     @Override
@@ -59,7 +53,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         private TextView txtTitle;
         private TextView txtDesc;
         private ImageView imgPoster;
-        public ViewHolder(@NonNull View itemView) {
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTitle = itemView.findViewById(R.id.txt_title);
             txtDesc = itemView.findViewById(R.id.txt_desc);

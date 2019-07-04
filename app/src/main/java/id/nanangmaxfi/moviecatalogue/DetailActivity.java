@@ -20,6 +20,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     private TextView txtTitle, txtDesc, txtYear, txtScore;
     private Movie movie;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         txtYear = findViewById(R.id.txt_year);
 
         presenter = new DetailPresenter(this);
+
         movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
     }
 
@@ -55,10 +57,9 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
+        if (item.getItemId() == android.R.id.home){
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

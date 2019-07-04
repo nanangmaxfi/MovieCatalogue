@@ -1,7 +1,5 @@
 package id.nanangmaxfi.moviecatalogue.presenter;
 
-import android.content.Context;
-
 import id.nanangmaxfi.moviecatalogue.model.Movie;
 import id.nanangmaxfi.moviecatalogue.view.DetailView;
 

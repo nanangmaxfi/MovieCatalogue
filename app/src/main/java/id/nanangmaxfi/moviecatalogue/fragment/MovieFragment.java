@@ -36,7 +36,7 @@ public class MovieFragment extends Fragment implements MovieView {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull  LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_movie, container, false);
@@ -47,7 +47,6 @@ public class MovieFragment extends Fragment implements MovieView {
         super.onViewCreated(view, savedInstanceState);
         presenter = new MoviePresenter(this);
         rvMovie = view.findViewById(R.id.rv_movie);
-
     }
 
     @Override

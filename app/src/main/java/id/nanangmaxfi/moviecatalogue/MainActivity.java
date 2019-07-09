@@ -5,6 +5,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,8 @@ import id.nanangmaxfi.moviecatalogue.fragment.MovieFragment;
 import id.nanangmaxfi.moviecatalogue.fragment.TvFragment;
 
 public class MainActivity extends AppCompatActivity {
+    private FragmentManager fragmentManager;
+    private final static String FRAGMENT_TAG = "fragmenttag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        fragmentManager = getSupportFragmentManager();
 
         if (savedInstanceState == null){
             navigation.setSelectedItemId(R.id.nav_movie);
@@ -38,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.nav_movie:
                     fragment = new MovieFragment();
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container_layout, fragment, fragment.getClass().getSimpleName())
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container_layout, fragment, FRAGMENT_TAG)
                             .commit();
                     return true;
                 case R.id.nav_tv:
                     fragment = new TvFragment();
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container_layout, fragment, fragment.getClass().getSimpleName())
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container_layout, fragment, FRAGMENT_TAG)
                             .commit();
                     return true;
             }

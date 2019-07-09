@@ -14,39 +14,39 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import id.nanangmaxfi.moviecatalogue.R;
-import id.nanangmaxfi.moviecatalogue.model.GetMovie;
+import id.nanangmaxfi.moviecatalogue.model.GetTv;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<GetMovie> movies;
+    private ArrayList<GetTv> Tvs;
 
-    public MovieAdapter(Context context, ArrayList<GetMovie> movies) {
+    public TvAdapter(Context context, ArrayList<GetTv> Tvs) {
         this.context = context;
-        this.movies = movies;
+        this.Tvs = Tvs;
     }
 
-    private ArrayList<GetMovie> getMovies() {
-        return movies;
+    private ArrayList<GetTv> getTvs() {
+        return Tvs;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public TvAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_movie, viewGroup, false);
-        return new ViewHolder(view);
+        return new TvAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull TvAdapter.ViewHolder holder, int i) {
         final String imageURL = "https://image.tmdb.org/t/p/w185";
-        holder.txtTitle.setText(getMovies().get(i).getTitle());
-        holder.txtDesc.setText(getMovies().get(i).getOverview());
-        Glide.with(context).load(imageURL+getMovies().get(i).getPoster()).into(holder.imgPoster);
+        holder.txtTitle.setText(getTvs().get(i).getTitle());
+        holder.txtDesc.setText(getTvs().get(i).getOverview());
+        Glide.with(context).load(imageURL+getTvs().get(i).getPoster()).into(holder.imgPoster);
     }
 
     @Override
     public int getItemCount() {
-        return movies.size();
+        return Tvs.size();
     }
 
 

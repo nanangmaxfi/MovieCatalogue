@@ -1,32 +1,44 @@
 package id.nanangmaxfi.moviecatalogue.presenter;
 
-import android.content.res.TypedArray;
+
+import android.util.Log;
 
 import java.util.ArrayList;
 
-import id.nanangmaxfi.moviecatalogue.model.Movie;
+import id.nanangmaxfi.moviecatalogue.model.GetListTv;
+import id.nanangmaxfi.moviecatalogue.model.GetTv;
+import id.nanangmaxfi.moviecatalogue.rest.ApiClient;
+import id.nanangmaxfi.moviecatalogue.rest.ApiInterface;
 import id.nanangmaxfi.moviecatalogue.view.TvView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TvPresenter {
+    private final static String TAG = TvPresenter.class.getSimpleName();
     private TvView view;
+    private ApiInterface apiInterface;
 
     public TvPresenter(TvView view) {
         this.view = view;
+        this.apiInterface = ApiClient.getClient().create(ApiInterface.class);
     }
 
-    public void load(String[] dataTitle, String[] dataDesc, TypedArray dataPoster, String[] dataScore, String[] dataYear){
-        ArrayList<Movie> tvShows = new ArrayList<>();
+    public void load(){
+        Call<GetListTv> tvCall = apiInterface.getListTv();
+        tvCall.enqueue(new Callback<GetListTv>() {
+            @Override
+            public void onResponse(Call<GetListTv> call, Response<GetListTv> response) {
+                Log.d(TAG, "Retrofit Success load");
+                ArrayList<GetTv> tv = response.body().getListTv();
+                view.showList(tv);
+            }
 
-        for (int i = 0; i < dataTitle.length; i++){
-            Movie tvShow = new Movie();
-            tvShow.setPoster(dataPoster.getResourceId(i, -1));
-            tvShow.setTitle(dataTitle[i]);
-            tvShow.setDesc(dataDesc[i]);
-            tvShow.setScore(dataScore[i]);
-            tvShow.setYear(dataYear[i]);
-            tvShows.add(tvShow);
-        }
-
-        view.showList(tvShows);
+            @Override
+            public void onFailure(Call<GetListTv> call, Throwable t) {
+                Log.e(TAG, t.toString());
+                view.showError(t.getMessage());
+            }
+        });
     }
 }

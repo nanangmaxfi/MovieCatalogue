@@ -6,11 +6,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import id.nanangmaxfi.moviecatalogue.model.GetMovie;
 import id.nanangmaxfi.moviecatalogue.model.GetTv;
@@ -68,7 +73,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     }
 
     @Override
-    public void show(String title, String desc, String poster, String score, String year) {
+    public void show(String title, String desc, String poster, String score, String date) {
         final String imageURL = "https://image.tmdb.org/t/p/w500";
         collapsingToolbarLayout.setTitle(title);
         collapsingToolbarLayout.setCollapsedTitleTextColor(
@@ -77,7 +82,18 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
                 ContextCompat.getColor(this, R.color.colorPrimary));
         txtDesc.setText(desc);
         txtVote.setText(score);
-        txtDate.setText(year);
+        String newDateString = date;
+        try {
+            SimpleDateFormat spf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            Date newDate = spf.parse(date);
+            spf = new SimpleDateFormat("dd MMM yyyy", Locale.US);
+            newDateString = spf.format(newDate);
+        }
+        catch (Exception e){
+            Log.e("Date", e.getMessage());
+        }
+
+        txtDate.setText(newDateString);
         Glide.with(getApplicationContext()).load(imageURL+poster).into(imgPoster);
     }
 

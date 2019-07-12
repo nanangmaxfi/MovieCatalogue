@@ -33,6 +33,8 @@ public class TvFragment extends Fragment implements TvView {
     private ProgressBar progressBar;
     private RelativeLayout layoutError;
     private TvPresenter presenter;
+    private final String DATA = "data";
+    private ArrayList<GetTv> tvShows = new ArrayList<>();
 
     public TvFragment() {
         // Required empty public constructor
@@ -56,15 +58,28 @@ public class TvFragment extends Fragment implements TvView {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        progressLoading(0);
-        presenter.load();
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelableArrayList(DATA, tvShows);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null){
+            tvShows = savedInstanceState.getParcelableArrayList(DATA);
+            showList(tvShows);
+        }
+        else {
+            progressLoading(0);
+            presenter.load();
+        }
     }
 
 
     @Override
     public void showList(final ArrayList<GetTv> tvShows) {
+        this.tvShows = tvShows;
         progressLoading(1);
         rvTv.setLayoutManager(new LinearLayoutManager(getContext()));
         TvAdapter adapter = new TvAdapter(getContext(), tvShows);

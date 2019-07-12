@@ -15,8 +15,8 @@ import id.nanangmaxfi.moviecatalogue.fragment.MovieFragment;
 import id.nanangmaxfi.moviecatalogue.fragment.TvFragment;
 
 public class MainActivity extends AppCompatActivity {
-    private FragmentManager fragmentManager;
     private final static String FRAGMENT_TAG = "fragmenttag";
+    private Fragment fragment = new MovieFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +25,26 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        fragmentManager = getSupportFragmentManager();
 
         if (savedInstanceState == null){
             navigation.setSelectedItemId(R.id.nav_movie);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container_layout, fragment, FRAGMENT_TAG)
+                    .commit();
+        }
+        else {
+            fragment = getSupportFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container_layout, fragment, FRAGMENT_TAG)
+                    .commit();
         }
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        getSupportFragmentManager().putFragment(outState, FRAGMENT_TAG, fragment);
+        super.onSaveInstanceState(outState);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -38,17 +52,16 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.nav_movie:
                     fragment = new MovieFragment();
-                    fragmentManager.beginTransaction()
+                    getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container_layout, fragment, FRAGMENT_TAG)
                             .commit();
                     return true;
                 case R.id.nav_tv:
                     fragment = new TvFragment();
-                    fragmentManager.beginTransaction()
+                    getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container_layout, fragment, FRAGMENT_TAG)
                             .commit();
                     return true;

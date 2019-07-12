@@ -38,8 +38,8 @@ public class MovieFragment extends Fragment implements MovieView {
     private RelativeLayout layoutError;
     private MoviePresenter presenter;
     private LinearLayoutManager linearLayoutManager;
-    public final static String LIST_STATE_KEY = "rv_state";
-    Parcelable listState;
+    private final String DATA = "data";
+    private ArrayList<GetMovie> movies = new ArrayList<>();
 
     public MovieFragment() {
         // Required empty public constructor
@@ -50,11 +50,7 @@ public class MovieFragment extends Fragment implements MovieView {
     public View onCreateView(@NonNull  LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_movie, container, false);
-//        if (savedInstanceState != null){
-//            listState = savedInstanceState.getParcelable(LIST_STATE_KEY);
-//        }
-        return view;
+        return inflater.inflate(R.layout.fragment_movie, container, false);
     }
 
     @Override
@@ -68,15 +64,27 @@ public class MovieFragment extends Fragment implements MovieView {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        progressLoading(0);
-        presenter.load();
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelableArrayList(DATA, movies);
+        super.onSaveInstanceState(outState);
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null){
+            movies = savedInstanceState.getParcelableArrayList(DATA);
+            showList(movies);
+        }
+        else {
+            progressLoading(0);
+            presenter.load();
+        }
+    }
 
     @Override
     public void showList(final ArrayList<GetMovie> movies) {
+        this.movies = movies;
         progressLoading(1);
         rvMovie.setLayoutManager(linearLayoutManager);
         MovieAdapter adapter = new MovieAdapter(getContext(), movies);

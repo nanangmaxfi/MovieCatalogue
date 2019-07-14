@@ -6,6 +6,6 @@ import id.nanangmaxfi.moviecatalogue.model.GetTv;
 
 public interface TvView {
     void showList(ArrayList<GetTv> tvShows);
-    void selectTv(GetTv tvShow);
+    void selectTv(String id);
     void showError(String message);
 }

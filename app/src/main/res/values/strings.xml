@@ -15,4 +15,7 @@
     <string name="overview">Ringkasan</string>
     <string name="budget">Anggaran</string>
     <string name="revenue">Pemasukan</string>
+    <string name="first_air_date">Tanggal Tayang Perdana</string>
+    <string name="status">Status</string>
+    <string name="type">Jenis</string>
 </resources>

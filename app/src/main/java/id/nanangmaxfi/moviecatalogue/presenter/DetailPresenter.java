@@ -43,8 +43,4 @@ public class DetailPresenter {
         });
 
     }
-
-    public void load(GetTv tvshow){
-
-    }
 }

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import id.nanangmaxfi.moviecatalogue.DetailActivity;
 import id.nanangmaxfi.moviecatalogue.R;
+import id.nanangmaxfi.moviecatalogue.TvDetailActivity;
 import id.nanangmaxfi.moviecatalogue.adapter.TvAdapter;
 import id.nanangmaxfi.moviecatalogue.helper.ItemClickSupport;
 import id.nanangmaxfi.moviecatalogue.model.GetTv;
@@ -87,18 +88,16 @@ public class TvFragment extends Fragment implements TvView {
         ItemClickSupport.addTo(rvTv).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                selectTv(tvShows.get(position));
+                selectTv(tvShows.get(position).getId());
             }
         });
     }
 
     @Override
-    public void selectTv(GetTv tvShow) {
-        Toast.makeText(getContext(), tvShow.getTitle()+" clicked",Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(getActivity(), DetailActivity.class);
-//        intent.putExtra(DetailActivity.EXTRA_MOVIE, tvShow);
-//        intent.putExtra(DetailActivity.EXTRA_STATE, 1);
-//        startActivity(intent);
+    public void selectTv(String id) {
+        Intent intent = new Intent(getActivity(), TvDetailActivity.class);
+        intent.putExtra(TvDetailActivity.EXTRA_TV, id);
+        startActivity(intent);
     }
 
     @Override

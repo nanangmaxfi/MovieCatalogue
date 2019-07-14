@@ -1,14 +1,9 @@
 package id.nanangmaxfi.moviecatalogue;
 
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.NavUtils;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,16 +17,16 @@ import com.bumptech.glide.Glide;
 
 import id.nanangmaxfi.moviecatalogue.adapter.GenreAdapter;
 import id.nanangmaxfi.moviecatalogue.helper.ConfigUtils;
-import id.nanangmaxfi.moviecatalogue.model.GetDetailMovie;
-import id.nanangmaxfi.moviecatalogue.presenter.DetailPresenter;
-import id.nanangmaxfi.moviecatalogue.view.DetailView;
+import id.nanangmaxfi.moviecatalogue.model.GetDetailTv;
+import id.nanangmaxfi.moviecatalogue.presenter.TvDetailPresenter;
+import id.nanangmaxfi.moviecatalogue.view.TvDetailView;
 
-public class DetailActivity extends AppCompatActivity implements DetailView {
-    public static final String EXTRA_MOVIE = "extra_movie";
+public class TvDetailActivity extends AppCompatActivity implements TvDetailView {
+    public static final String EXTRA_TV = "extra_tv";
     public static final String DATA = "data_detail";
-    private DetailPresenter presenter;
+    private TvDetailPresenter presenter;
     private ImageView imgPoster;
-    private TextView txtTitle, txtDesc, txtDate, txtRating, txtBudget, txtRevenue;
+    private TextView txtName, txtOverview, txtDate, txtRating, txtStatus, txtType;
     private String id;
     private ProgressBar progressBar;
     private ScrollView layoutDetail;
@@ -39,12 +34,12 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     private RecyclerView rv_genre;
     private LinearLayoutManager layoutManager;
     private RelativeLayout layoutError;
-    private GetDetailMovie movie;
+    private GetDetailTv tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_tv_detail);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -52,12 +47,12 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         }
 
         imgPoster = findViewById(R.id.img_poster);
-        txtTitle = findViewById(R.id.title);
-        txtDate = findViewById(R.id.release_date);
+        txtName = findViewById(R.id.name);
+        txtDate = findViewById(R.id.first_air_date);
         txtRating = findViewById(R.id.rating);
-        txtBudget = findViewById(R.id.budget);
-        txtRevenue = findViewById(R.id.revenue);
-        txtDesc = findViewById(R.id.overview);
+        txtStatus = findViewById(R.id.status);
+        txtType = findViewById(R.id.type);
+        txtOverview = findViewById(R.id.overview);
         progressBar = findViewById(R.id.progress_bar);
         layoutDetail = findViewById(R.id.layout_detail);
         rv_genre = findViewById(R.id.rv_genre);
@@ -65,9 +60,9 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         layoutError = findViewById(R.id.layout_error);
 
-        presenter = new DetailPresenter(this);
+        presenter = new TvDetailPresenter(this);
 
-        id = getIntent().getStringExtra(EXTRA_MOVIE);
+        id = getIntent().getStringExtra(EXTRA_TV);
 
         if (savedInstanceState == null){
             progressLoading(0);
@@ -75,42 +70,36 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        progressLoading(0);
-        presenter.load(id);
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable(DATA, movie);
+        outState.putParcelable(DATA, tv);
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        movie = savedInstanceState.getParcelable(DATA);
-        show(movie);
+        tv = savedInstanceState.getParcelable(DATA);
+        show(tv);
     }
 
     @Override
-    public void show(GetDetailMovie movie) {
+    public void show(GetDetailTv tv) {
         final String imageURL = "https://image.tmdb.org/t/p/w500";
-        this.movie = movie;
-        txtTitle.setText(movie.getTitle());
-        txtRating.setText(movie.getRating());
-        txtBudget.setText(configUtils.formatCurrency(movie.getBudget()));
-        txtRevenue.setText(configUtils.formatCurrency(movie.getRevenue()));
-        txtDesc.setText(movie.getOverview());
-        txtDate.setText(configUtils.formatDate(movie.getReleaseDate()));
+        this.tv = tv;
+        txtName.setText(tv.getName());
+        txtRating.setText(tv.getRating());
+        txtStatus.setText(tv.getStatus());
+        txtType.setText(tv.getType());
+        txtOverview.setText(tv.getOverview());
+        txtDate.setText(configUtils.formatDate(tv.getFirstAirDate()));
 
         rv_genre.setLayoutManager(layoutManager);
-        GenreAdapter genreAdapter = new GenreAdapter(getApplicationContext(), movie.getGenres());
+        GenreAdapter genreAdapter = new GenreAdapter(getApplicationContext(), tv.getGenres());
         rv_genre.setAdapter(genreAdapter);
 
-        Glide.with(getApplicationContext()).load(imageURL+movie.getPoster()).into(imgPoster);
+        Glide.with(getApplicationContext()).load(imageURL+tv.getPoster()).into(imgPoster);
         progressLoading(1);
     }
 

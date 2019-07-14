@@ -94,10 +94,11 @@ public class TvFragment extends Fragment implements TvView {
 
     @Override
     public void selectTv(GetTv tvShow) {
-        Intent intent = new Intent(getActivity(), DetailActivity.class);
-        intent.putExtra(DetailActivity.EXTRA_MOVIE, tvShow);
-        intent.putExtra(DetailActivity.EXTRA_STATE, 1);
-        startActivity(intent);
+        Toast.makeText(getContext(), tvShow.getTitle()+" clicked",Toast.LENGTH_LONG).show();
+//        Intent intent = new Intent(getActivity(), DetailActivity.class);
+//        intent.putExtra(DetailActivity.EXTRA_MOVIE, tvShow);
+//        intent.putExtra(DetailActivity.EXTRA_STATE, 1);
+//        startActivity(intent);
     }
 
     @Override

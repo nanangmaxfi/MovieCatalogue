@@ -1,49 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".DetailActivity">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+    <ScrollView
+        android:id="@+id/layout_detail"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:fitsSystemWindows="true"
-        app:theme="@style/AppTheme.PopupOverlay">
+        android:layout_height="wrap_content">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layout_bottom"
+            android:paddingBottom="32dp"
+            android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-            <ImageView
-                android:id="@+id/expandedImage"
+            android:layout_height="wrap_content">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/layout_top"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:scaleType="centerCrop"
-                android:contentDescription="@string/gambar_poster"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.7"/>
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:paddingBottom="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:layout_collapseMode="pin"
-                app:theme="@style/ToolbarColoredBackArrow"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                android:elevation="4dp"/>
+                <ImageView
+                    android:id="@+id/img_poster"
+                    android:layout_width="150dp"
+                    android:layout_height="225dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
 
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+                    android:contentDescription="@string/gambar_poster"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <include layout="@layout/item_detail"/>
-</android.support.design.widget.CoordinatorLayout>
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/TextAppearance.AppCompat.title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/img_poster"
+                    app:layout_constraintTop_toTopOf="@+id/img_poster"
+                    tools:text="Avenger Game" />
+
+                <TextView
+                    android:id="@+id/txt_release_date"
+                    style="@style/TextAppearance.AppCompat.txtsubtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/tanggal_release"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/title"
+                    app:layout_constraintTop_toBottomOf="@+id/title" />
+
+                <TextView
+                    android:id="@+id/release_date"
+                    style="@style/TextAppearance.AppCompat.subtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/txt_release_date"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_release_date"
+                    tools:text="@tools:sample/date/mmddyy" />
+
+                <TextView
+                    android:id="@+id/txt_rating"
+                    style="@style/TextAppearance.AppCompat.txtsubtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/score"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/release_date"
+                    app:layout_constraintTop_toBottomOf="@+id/release_date" />
+
+                <TextView
+                    android:id="@+id/rating"
+                    style="@style/TextAppearance.AppCompat.subtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txt_rating"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_rating"
+                    tools:text="8,7 / 10" />
+
+                <TextView
+                    android:id="@+id/txt_budget"
+                    style="@style/TextAppearance.AppCompat.txtsubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/budget"
+                    app:layout_constraintStart_toStartOf="@+id/rating"
+                    app:layout_constraintTop_toBottomOf="@+id/rating" />
+
+                <TextView
+                    android:id="@+id/budget"
+                    style="@style/TextAppearance.AppCompat.subtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txt_budget"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_budget"
+                    tools:text="$200.000.000" />
+
+                <TextView
+                    android:id="@+id/txt_revenue"
+                    style="@style/TextAppearance.AppCompat.txtsubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/revenue"
+                    app:layout_constraintStart_toStartOf="@+id/budget"
+                    app:layout_constraintTop_toBottomOf="@+id/budget" />
+
+                <TextView
+                    android:id="@+id/revenue"
+                    style="@style/TextAppearance.AppCompat.subtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txt_revenue"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_revenue"
+                    tools:text="$1.678.872.000" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txt_genre"
+                style="@style/TextAppearance.AppCompat.txtsubtitlebottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/genre"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_top" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_genre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="24dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_genre" />
+
+            <TextView
+                android:id="@+id/txt_overview"
+                style="@style/TextAppearance.AppCompat.txtsubtitlebottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/overview"
+                app:layout_constraintStart_toStartOf="@+id/rv_genre"
+                app:layout_constraintTop_toBottomOf="@+id/rv_genre" />
+
+            <TextView
+                android:id="@+id/overview"
+                style="@style/TextAppearance.AppCompat.subtitlebottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/txt_overview"
+                app:layout_constraintTop_toBottomOf="@+id/txt_overview"
+                tools:text="@tools:sample/lorem/random" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <include
+        layout="@layout/item_error"/>
+</RelativeLayout>

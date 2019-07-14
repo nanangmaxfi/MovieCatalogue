@@ -8,6 +8,30 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextAppearance.AppCompat.title">
+        <item name="android:textColor">@color/textIcon</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.txtsubtitle">
+        <item name="android:textColor">@color/textIcon</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.subtitle">
+        <item name="android:textColor">@color/textIcon</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.txtsubtitlebottom">
+        <item name="android:textColor">@color/secondaryText</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.subtitlebottom">
+        <item name="android:textColor">@color/secondaryText</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

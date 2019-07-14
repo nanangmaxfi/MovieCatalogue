@@ -1,5 +1,11 @@
 package id.nanangmaxfi.moviecatalogue.view;
 
+import java.util.ArrayList;
+
+import id.nanangmaxfi.moviecatalogue.model.Genre;
+import id.nanangmaxfi.moviecatalogue.model.GetDetailMovie;
+
 public interface DetailView {
-    void show(String title, String desc, String poster, String score, String year);
+    void show(GetDetailMovie movie);
+    void showError(String message);
 }

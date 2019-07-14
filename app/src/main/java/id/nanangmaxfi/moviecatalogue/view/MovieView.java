@@ -6,6 +6,6 @@ import id.nanangmaxfi.moviecatalogue.model.GetMovie;
 
 public interface MovieView {
     void showList(ArrayList<GetMovie> movies);
-    void selectMovie(GetMovie movie);
+    void selectMovie(String id);
     void showError(String message);
 }

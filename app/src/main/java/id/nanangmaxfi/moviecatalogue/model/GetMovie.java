@@ -1,5 +1,6 @@
 package id.nanangmaxfi.moviecatalogue.model;
 
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -16,16 +17,19 @@ public class GetMovie implements Parcelable {
     private String vote;
     @SerializedName("poster_path")
     private String poster;
+    @SerializedName("id")
+    private String id;
 
     public GetMovie() {
     }
 
-    public GetMovie(String title, String overview, String releaseDate, String vote, String poster) {
+    public GetMovie(String title, String overview, String releaseDate, String vote, String poster, String id) {
         this.title = title;
         this.overview = overview;
         this.releaseDate = releaseDate;
         this.vote = vote;
         this.poster = poster;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -68,6 +72,15 @@ public class GetMovie implements Parcelable {
         this.poster = poster;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -80,6 +93,7 @@ public class GetMovie implements Parcelable {
         dest.writeString(this.releaseDate);
         dest.writeString(this.vote);
         dest.writeString(this.poster);
+        dest.writeString(this.id);
     }
 
     protected GetMovie(Parcel in) {
@@ -88,6 +102,7 @@ public class GetMovie implements Parcelable {
         this.releaseDate = in.readString();
         this.vote = in.readString();
         this.poster = in.readString();
+        this.id = in.readString();
     }
 
     public static final Parcelable.Creator<GetMovie> CREATOR = new Parcelable.Creator<GetMovie>() {

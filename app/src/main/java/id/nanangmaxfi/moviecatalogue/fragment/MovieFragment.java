@@ -92,16 +92,15 @@ public class MovieFragment extends Fragment implements MovieView {
         ItemClickSupport.addTo(rvMovie).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                selectMovie(movies.get(position));
+                selectMovie(movies.get(position).getId());
             }
         });
     }
 
     @Override
-    public void selectMovie(GetMovie movie) {
+    public void selectMovie(String id) {
         Intent intent = new Intent(getActivity(), DetailActivity.class);
-        intent.putExtra(DetailActivity.EXTRA_MOVIE, movie);
-        intent.putExtra(DetailActivity.EXTRA_STATE, 0);
+        intent.putExtra(DetailActivity.EXTRA_MOVIE, id);
         startActivity(intent);
     }
 

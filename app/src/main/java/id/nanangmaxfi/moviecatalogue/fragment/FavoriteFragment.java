@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import id.nanangmaxfi.moviecatalogue.R;
 import id.nanangmaxfi.moviecatalogue.adapter.FavoriteAdapter;
+import id.nanangmaxfi.moviecatalogue.database.Favorite;
 import id.nanangmaxfi.moviecatalogue.model.GetMovie;
 import id.nanangmaxfi.moviecatalogue.model.GetTv;
 import id.nanangmaxfi.moviecatalogue.presenter.FavoritePresenter;
@@ -33,8 +34,8 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
     private FavoritePresenter presenter;
     private final String DATA_MOVIE = "data_movie";
     private final String DATA_TV = "data_tv";
-    private ArrayList<GetMovie> movies = new ArrayList<>();
-    private ArrayList<GetTv> tvs = new ArrayList<>();
+    private ArrayList<Favorite> movies = new ArrayList<>();
+    private ArrayList<Favorite> tvs = new ArrayList<>();
     private ProgressBar progressBar;
     private LinearLayout layoutDetail;
     private RelativeLayout layoutError;
@@ -88,7 +89,7 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
     }
 
     @Override
-    public void showList(ArrayList<GetMovie> movies, ArrayList<GetTv> tvs) {
+    public void showList(ArrayList<Favorite> movies, ArrayList<Favorite> tvs) {
         FavoriteAdapter favoriteAdapter = new FavoriteAdapter(getChildFragmentManager(),
                 tabLayout.getTabCount(), movies, tvs);
         viewPager.setAdapter(favoriteAdapter);
@@ -111,11 +112,6 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
         });
 
         progressLoading(1);
-    }
-
-    @Override
-    public void selectMovie(String id) {
-
     }
 
     @Override

@@ -24,11 +24,13 @@ public class GetDetailMovie implements Parcelable {
     private String revenue;
     @SerializedName("genres")
     private ArrayList<Genre> genres;
+    @SerializedName("id")
+    private String id;
 
     public GetDetailMovie() {
     }
 
-    public GetDetailMovie(String title, String overview, String releaseDate, String rating, String poster, String budget, String revenue, ArrayList<Genre> genres) {
+    public GetDetailMovie(String title, String overview, String releaseDate, String rating, String poster, String budget, String revenue, ArrayList<Genre> genres, String id) {
         this.title = title;
         this.overview = overview;
         this.releaseDate = releaseDate;
@@ -37,6 +39,7 @@ public class GetDetailMovie implements Parcelable {
         this.budget = budget;
         this.revenue = revenue;
         this.genres = genres;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -103,6 +106,14 @@ public class GetDetailMovie implements Parcelable {
         this.genres = genres;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
     @Override
     public int describeContents() {
@@ -119,6 +130,7 @@ public class GetDetailMovie implements Parcelable {
         dest.writeString(this.budget);
         dest.writeString(this.revenue);
         dest.writeList(this.genres);
+        dest.writeString(this.id);
     }
 
     protected GetDetailMovie(Parcel in) {
@@ -131,6 +143,7 @@ public class GetDetailMovie implements Parcelable {
         this.revenue = in.readString();
         this.genres = new ArrayList<Genre>();
         in.readList(this.genres, Genre.class.getClassLoader());
+        this.id = in.readString();
     }
 
     public static final Parcelable.Creator<GetDetailMovie> CREATOR = new Parcelable.Creator<GetDetailMovie>() {

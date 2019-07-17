@@ -20,4 +20,5 @@
     <string name="status">Status</string>
     <string name="type">Type</string>
     <string name="favorite">Favorite</string>
+    <string name="favorite_list_empty">The list of favorite movies is still empty</string>
 </resources>

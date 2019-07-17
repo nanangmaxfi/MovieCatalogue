@@ -1,11 +1,13 @@
 package id.nanangmaxfi.moviecatalogue;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -21,20 +23,22 @@ import id.nanangmaxfi.moviecatalogue.model.GetDetailTv;
 import id.nanangmaxfi.moviecatalogue.presenter.TvDetailPresenter;
 import id.nanangmaxfi.moviecatalogue.view.TvDetailView;
 
+import static id.nanangmaxfi.moviecatalogue.app.MyApp.db;
+
 public class TvDetailActivity extends AppCompatActivity implements TvDetailView {
     public static final String EXTRA_TV = "extra_tv";
     public static final String DATA = "data_detail";
     private TvDetailPresenter presenter;
     private ImageView imgPoster;
     private TextView txtName, txtOverview, txtDate, txtRating, txtStatus, txtType;
-    private String id;
     private ProgressBar progressBar;
     private ScrollView layoutDetail;
     private ConfigUtils configUtils = ConfigUtils.getInstance();
     private RecyclerView rv_genre;
     private LinearLayoutManager layoutManager;
-    private RelativeLayout layoutError;
+    private RelativeLayout layoutError, layoutMain;
     private GetDetailTv tv;
+    private CheckBox checkFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +63,23 @@ public class TvDetailActivity extends AppCompatActivity implements TvDetailView 
         layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         layoutError = findViewById(R.id.layout_error);
+        checkFavorite = findViewById(R.id.check_favorite);
+        layoutMain = findViewById(R.id.layout_main);
 
         presenter = new TvDetailPresenter(this);
 
-        id = getIntent().getStringExtra(EXTRA_TV);
+        String id = getIntent().getStringExtra(EXTRA_TV);
+        checkFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkFavorite.isChecked()){
+                    presenter.addFavorite(tv);
+                }
+                else {
+                    presenter.deleteFavorite(tv.getId());
+                }
+            }
+        });
 
         if (savedInstanceState == null){
             progressLoading(0);
@@ -70,6 +87,11 @@ public class TvDetailActivity extends AppCompatActivity implements TvDetailView 
         }
     }
 
+    private void checkFavorite(){
+        if (db.favoriteDao().getItem(tv.getId()) != null){
+            checkFavorite.setChecked(true);
+        }
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -100,6 +122,7 @@ public class TvDetailActivity extends AppCompatActivity implements TvDetailView 
         rv_genre.setAdapter(genreAdapter);
 
         Glide.with(getApplicationContext()).load(imageURL+tv.getPoster()).into(imgPoster);
+        checkFavorite();
         progressLoading(1);
     }
 
@@ -107,6 +130,11 @@ public class TvDetailActivity extends AppCompatActivity implements TvDetailView 
     public void showError(String message) {
         progressLoading(2);
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showSnackbar(String message) {
+        Snackbar.make(layoutMain,message,Snackbar.LENGTH_LONG).show();
     }
 
     @Override

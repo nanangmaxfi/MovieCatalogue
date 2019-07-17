@@ -24,11 +24,13 @@ public class GetDetailTv implements Parcelable {
     private String overview;
     @SerializedName("poster_path")
     private String poster;
+    @SerializedName("id")
+    private String id;
 
     public GetDetailTv() {
     }
 
-    public GetDetailTv(String name, String firstAirDate, String rating, String status, String type, ArrayList<Genre> genres, String overview, String poster) {
+    public GetDetailTv(String name, String firstAirDate, String rating, String status, String type, ArrayList<Genre> genres, String overview, String poster, String id) {
         this.name = name;
         this.firstAirDate = firstAirDate;
         this.rating = rating;
@@ -37,6 +39,7 @@ public class GetDetailTv implements Parcelable {
         this.genres = genres;
         this.overview = overview;
         this.poster = poster;
+        this.id = id;
     }
 
     public String getName() {
@@ -103,6 +106,14 @@ public class GetDetailTv implements Parcelable {
         this.poster = poster;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
     @Override
     public int describeContents() {
@@ -119,6 +130,7 @@ public class GetDetailTv implements Parcelable {
         dest.writeList(this.genres);
         dest.writeString(this.overview);
         dest.writeString(this.poster);
+        dest.writeString(this.id);
     }
 
     protected GetDetailTv(Parcel in) {
@@ -131,6 +143,7 @@ public class GetDetailTv implements Parcelable {
         in.readList(this.genres, Genre.class.getClassLoader());
         this.overview = in.readString();
         this.poster = in.readString();
+        this.id = in.readString();
     }
 
     public static final Parcelable.Creator<GetDetailTv> CREATOR = new Parcelable.Creator<GetDetailTv>() {

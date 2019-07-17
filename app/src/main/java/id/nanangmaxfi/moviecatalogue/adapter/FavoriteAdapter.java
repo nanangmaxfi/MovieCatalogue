@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 
+import id.nanangmaxfi.moviecatalogue.database.Favorite;
 import id.nanangmaxfi.moviecatalogue.fragment.TabFavMovieFragment;
 import id.nanangmaxfi.moviecatalogue.fragment.TabFavTvFragment;
 import id.nanangmaxfi.moviecatalogue.model.GetMovie;
@@ -14,10 +15,10 @@ import id.nanangmaxfi.moviecatalogue.model.GetTv;
 
 public class FavoriteAdapter extends FragmentStatePagerAdapter {
     private int PAGE_COUNT;
-    private ArrayList<GetMovie> movies;
-    private ArrayList<GetTv> tvs;
+    private ArrayList<Favorite> movies;
+    private ArrayList<Favorite> tvs;
 
-    public FavoriteAdapter(FragmentManager fm, int PAGE_COUNT, ArrayList<GetMovie> movies, ArrayList<GetTv> tvs) {
+    public FavoriteAdapter(FragmentManager fm, int PAGE_COUNT, ArrayList<Favorite> movies, ArrayList<Favorite> tvs) {
         super(fm);
         this.PAGE_COUNT = PAGE_COUNT;
         this.movies = movies;

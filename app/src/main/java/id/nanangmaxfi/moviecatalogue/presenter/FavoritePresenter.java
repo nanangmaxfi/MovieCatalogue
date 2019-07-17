@@ -1,25 +1,26 @@
 package id.nanangmaxfi.moviecatalogue.presenter;
 
-import android.content.res.TypedArray;
 import android.util.Log;
 
 import java.util.ArrayList;
 
 import id.nanangmaxfi.moviecatalogue.model.GetListMovie;
+import id.nanangmaxfi.moviecatalogue.model.GetListTv;
 import id.nanangmaxfi.moviecatalogue.model.GetMovie;
+import id.nanangmaxfi.moviecatalogue.model.GetTv;
 import id.nanangmaxfi.moviecatalogue.rest.ApiClient;
 import id.nanangmaxfi.moviecatalogue.rest.ApiInterface;
-import id.nanangmaxfi.moviecatalogue.view.MovieView;
+import id.nanangmaxfi.moviecatalogue.view.FavoriteView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MoviePresenter {
-    private final static String TAG = MoviePresenter.class.getSimpleName();
-    private MovieView view;
+public class FavoritePresenter {
+    private final static String TAG = FavoritePresenter.class.getSimpleName();
+    private FavoriteView view;
     private ApiInterface apiInterface;
 
-    public MoviePresenter(MovieView view) {
+    public FavoritePresenter(FavoriteView view) {
         this.view = view;
         this.apiInterface = ApiClient.getClient().create(ApiInterface.class);
     }
@@ -29,9 +30,9 @@ public class MoviePresenter {
         movieCall.enqueue(new Callback<GetListMovie>() {
             @Override
             public void onResponse(Call<GetListMovie> call, Response<GetListMovie> response) {
-                Log.d(TAG, "Retrofit Success load");
+                Log.d(TAG, "Success get list movie");
                 ArrayList<GetMovie> movies = response.body().getListMovie();
-                view.showList(movies);
+                loadTV(movies);
             }
 
             @Override
@@ -42,4 +43,21 @@ public class MoviePresenter {
         });
     }
 
+    private void loadTV(final ArrayList<GetMovie> movies){
+        Call<GetListTv> tvCall = apiInterface.getListTv();
+        tvCall.enqueue(new Callback<GetListTv>() {
+            @Override
+            public void onResponse(Call<GetListTv> call, Response<GetListTv> response) {
+                Log.d(TAG, "Success get list tv");
+                ArrayList<GetTv> tvs = response.body().getListTv();
+                view.showList(movies, tvs);
+            }
+
+            @Override
+            public void onFailure(Call<GetListTv> call, Throwable t) {
+                Log.e(TAG, t.toString());
+                view.showError(t.getMessage());
+            }
+        });
+    }
 }

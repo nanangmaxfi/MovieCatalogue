@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import id.nanangmaxfi.moviecatalogue.fragment.FavoriteFragment;
 import id.nanangmaxfi.moviecatalogue.fragment.MovieFragment;
 import id.nanangmaxfi.moviecatalogue.fragment.TvFragment;
 
@@ -61,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.nav_tv:
                     fragment = new TvFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container_layout, fragment, FRAGMENT_TAG)
+                            .commit();
+                    return true;
+                case R.id.nav_favorite:
+                    fragment = new FavoriteFragment();
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container_layout, fragment, FRAGMENT_TAG)
                             .commit();

@@ -18,4 +18,5 @@
     <string name="first_air_date">Tanggal Tayang Perdana</string>
     <string name="status">Status</string>
     <string name="type">Jenis</string>
+    <string name="favorite">Favorit</string>
 </resources>

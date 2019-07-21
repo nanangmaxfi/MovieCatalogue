@@ -1,6 +1,7 @@
 package id.nanangmaxfi.moviecatalogue.presenter;
 
 import android.content.res.TypedArray;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -40,6 +41,31 @@ public class MoviePresenter {
                 view.showError(t.getMessage());
             }
         });
+    }
+
+    public void search(String name){
+        if (TextUtils.isEmpty(name)){
+            ArrayList<GetMovie> movies = new ArrayList<>();
+            view.showList(movies);
+        }
+        else {
+            Call<GetListMovie> movieCall = apiInterface.getSearchMovie(name);
+            movieCall.enqueue(new Callback<GetListMovie>() {
+                @Override
+                public void onResponse(Call<GetListMovie> call, Response<GetListMovie> response) {
+                    Log.d(TAG, "Search success");
+                    ArrayList<GetMovie> movies = response.body().getListMovie();
+                    view.showList(movies);
+                }
+
+                @Override
+                public void onFailure(Call<GetListMovie> call, Throwable t) {
+                    Log.e(TAG, t.toString());
+                    view.showError(t.getMessage());
+                }
+            });
+        }
+
     }
 
 }

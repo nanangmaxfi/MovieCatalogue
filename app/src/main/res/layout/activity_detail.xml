@@ -15,8 +15,12 @@
         android:layout_centerInParent="true"
         android:visibility="gone"/>
 
+    <include
+        layout="@layout/custom_toolbar" />
+
     <ScrollView
         android:id="@+id/layout_detail"
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

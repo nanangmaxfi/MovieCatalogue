@@ -8,6 +8,7 @@ import id.nanangmaxfi.moviecatalogue.model.GetListTv;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
 
@@ -22,4 +23,10 @@ public interface ApiInterface {
 
     @GET("tv/{id}?api_key="+ BuildConfig.API_KEY +"&language=en-US")
     Call<GetDetailTv> getDetailTv(@Path("id") String id);
+
+    @GET("search/movie?api_key="+ BuildConfig.API_KEY +"&language=en-US")
+    Call<GetListMovie> getSearchMovie(@Query("query") String name);
+
+    @GET("search/tv?api_key="+ BuildConfig.API_KEY +"&language=en-US")
+    Call<GetListTv> getSearchTv(@Query("query") String name);
 }

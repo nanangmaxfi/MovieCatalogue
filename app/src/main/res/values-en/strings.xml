@@ -21,4 +21,7 @@
     <string name="type">Type</string>
     <string name="favorite">Favorite</string>
     <string name="favorite_list_empty">The list of favorite movies is still empty</string>
+    <string name="search">Search</string>
+    <string name="info_movie">Info Movie</string>
+    <string name="info_tv">Info TV Show</string>
 </resources>

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,11 +49,17 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setElevation(0);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
+
+        TextView tlbTitle = findViewById(R.id.toolbar_title);
+        tlbTitle.setText(R.string.info_movie);
 
         imgPoster = findViewById(R.id.img_poster);
         txtTitle = findViewById(R.id.title);

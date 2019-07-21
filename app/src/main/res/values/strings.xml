@@ -20,4 +20,7 @@
     <string name="type">Jenis</string>
     <string name="favorite">Favorit</string>
     <string name="favorite_list_empty">Daftar film favorit masih kosong</string>
+    <string name="search">Cari</string>
+    <string name="info_movie">Info Film</string>
+    <string name="info_tv">Info Serial TV</string>
 </resources>

@@ -1,5 +1,8 @@
 package id.nanangmaxfi.moviecatalogue;
 
+import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import id.nanangmaxfi.moviecatalogue.adapter.GenreAdapter;
 import id.nanangmaxfi.moviecatalogue.database.Favorite;
@@ -32,6 +37,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     private final static String TAG = DetailActivity.class.getSimpleName();
     public static final String EXTRA_MOVIE = "extra_movie";
     public static final String DATA = "data_detail";
+    private final String imageURL = "https://image.tmdb.org/t/p/w500";
     private DetailPresenter presenter;
     private ImageView imgPoster;
     private TextView txtTitle, txtDesc, txtDate, txtRating, txtBudget, txtRevenue;
@@ -126,7 +132,6 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
     @Override
     public void show(GetDetailMovie movie) {
-        final String imageURL = "https://image.tmdb.org/t/p/w500";
         this.movie = movie;
         txtTitle.setText(movie.getTitle());
         txtRating.setText(movie.getRating());

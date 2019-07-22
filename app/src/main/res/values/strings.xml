@@ -23,4 +23,7 @@
     <string name="search">Cari</string>
     <string name="info_movie">Info Film</string>
     <string name="info_tv">Info Serial TV</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="empty">Kosong</string>
 </resources>

@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import id.nanangmaxfi.moviecatalogue.database.Favorite;
 import id.nanangmaxfi.moviecatalogue.fragment.TabFavMovieFragment;
 import id.nanangmaxfi.moviecatalogue.fragment.TabFavTvFragment;
-import id.nanangmaxfi.moviecatalogue.model.GetMovie;
-import id.nanangmaxfi.moviecatalogue.model.GetTv;
 
 public class FavoriteAdapter extends FragmentStatePagerAdapter {
     private int PAGE_COUNT;

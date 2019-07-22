@@ -13,6 +13,9 @@ public interface FavoriteDao {
     @Query("SELECT * FROM favorite WHERE type LIKE :type ")
     List<Favorite> getFavorite(String type);
 
+    @Query("SELECT * FROM favorite")
+    List<Favorite> getAllFavorite();
+
     @Query("SELECT * FROM favorite WHERE id LIKE :id")
     Favorite getItem(String id);
 

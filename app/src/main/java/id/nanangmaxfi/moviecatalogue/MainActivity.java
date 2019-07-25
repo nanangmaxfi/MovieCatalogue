@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import id.nanangmaxfi.moviecatalogue.fragment.FavoriteFragment;
@@ -13,6 +14,7 @@ import id.nanangmaxfi.moviecatalogue.fragment.MovieFragment;
 import id.nanangmaxfi.moviecatalogue.fragment.TvFragment;
 
 public class MainActivity extends AppCompatActivity {
+    private final static String TAG = MainActivity.class.getSimpleName();
     private final static String FRAGMENT_TAG = "fragmenttag";
     private Fragment fragment = new MovieFragment();
 

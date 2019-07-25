@@ -26,6 +26,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import id.nanangmaxfi.moviecatalogue.R;
+import id.nanangmaxfi.moviecatalogue.SettingActivity;
 import id.nanangmaxfi.moviecatalogue.adapter.FavoriteAdapter;
 import id.nanangmaxfi.moviecatalogue.database.Favorite;
 import id.nanangmaxfi.moviecatalogue.model.GetMovie;
@@ -167,6 +168,10 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_change_settings){
             Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            startActivity(intent);
+        }
+        else if (item.getItemId() == R.id.action_reminder_setting){
+            Intent intent = new Intent(getActivity(), SettingActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

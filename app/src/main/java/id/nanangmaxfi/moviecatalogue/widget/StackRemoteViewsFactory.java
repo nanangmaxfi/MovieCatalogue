@@ -71,7 +71,7 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         }
 
         Bundle extras = new Bundle();
-        extras.putInt(FavoriteWidget.EXTRA_ITEM, position);
+        extras.putString(FavoriteWidget.EXTRA_ITEM, widgetItems.get(position).getTitle());
         Intent fillInIntent = new Intent();
         fillInIntent.putExtras(extras);
 

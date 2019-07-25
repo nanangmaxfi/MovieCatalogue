@@ -5,6 +5,7 @@ import android.util.Log;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -35,5 +36,12 @@ public class ConfigUtils {
             Log.e("Date", e.getMessage());
         }
         return date;
+    }
+
+    //get currently time
+    public String getDate(){
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        return dateFormat.format(date);
     }
 }

@@ -24,4 +24,17 @@
     <string name="search">Search</string>
     <string name="info_movie">Info Movie</string>
     <string name="info_tv">Info TV Show</string>
+    <string name="empty">Empty</string>
+    <string name="appwidget_text">Movie Catalogue</string>
+    <string name="add_widget">Add Widget</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="release_reminder">Release Reminder</string>
+    <string name="sub_release_reminder">Reminder movie release today</string>
+    <string name="sub_daily_reminder">Reminder for return to app</string>
+    <string name="active">active</string>
+    <string name="change_setting">Change Setting</string>
+    <string name="deactive">not active</string>
+    <string name="setting">Setting</string>
+    <string name="message_daily_reminder">Movie Catalogue missing you!</string>
+    <string name="message_release_reminder">has been release today!</string>
 </resources>

@@ -61,8 +61,8 @@ public class FavoriteWidget extends AppWidgetProvider {
         super.onReceive(context, intent);
         if (intent.getAction() != null){
             if (intent.getAction().equals(TOAST_ACTION)){
-                int viewIndex = intent.getIntExtra(EXTRA_ITEM, 0);
-                Toast.makeText(context, "Touched view "+viewIndex, Toast.LENGTH_SHORT).show();
+                String title = intent.getStringExtra(EXTRA_ITEM);
+                Toast.makeText(context, title, Toast.LENGTH_SHORT).show();
             }
         }
     }

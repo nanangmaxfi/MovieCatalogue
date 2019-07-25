@@ -23,7 +23,17 @@
     <string name="search">Cari</string>
     <string name="info_movie">Info Film</string>
     <string name="info_tv">Info Serial TV</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
+    <string name="appwidget_text">Katalog Film</string>
+    <string name="add_widget">Tambah Widget</string>
     <string name="empty">Kosong</string>
+    <string name="release_reminder">Pengingat Rilis</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="sub_release_reminder">Pengingat rilis film hari ini</string>
+    <string name="sub_daily_reminder">Pengingat membuka aplikasi kembali</string>
+    <string name="setting">Pengaturan</string>
+    <string name="active">aktif</string>
+    <string name="deactive">tidak aktif</string>
+    <string name="change_setting">Ubah Pengaturan</string>
+    <string name="message_daily_reminder">Lagi ada yang kangen nih</string>
+    <string name="message_release_reminder">telah rilis hari ini!</string>
 </resources>

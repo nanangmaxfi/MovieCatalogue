@@ -29,4 +29,8 @@ public interface ApiInterface {
 
     @GET("search/tv?api_key="+ BuildConfig.API_KEY +"&language=en-US")
     Call<GetListTv> getSearchTv(@Query("query") String name);
+
+    @GET("discover/movie?api_key="+ BuildConfig.API_KEY +"&language=en-US")
+    Call<GetListMovie> getListReleaseMovie(@Query("release_date.lte") String releaseDate);
+
 }

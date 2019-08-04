@@ -26,7 +26,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import id.nanangmaxfi.moviecatalogue.DetailActivity;
 import id.nanangmaxfi.moviecatalogue.R;
 import id.nanangmaxfi.moviecatalogue.TvDetailActivity;
 import id.nanangmaxfi.moviecatalogue.adapter.TvAdapter;

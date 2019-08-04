@@ -25,7 +25,7 @@ public class FavTvAdapter extends RecyclerView.Adapter<FavTvAdapter.ViewHolder> 
         this.tvs = tvs;
     }
 
-    public ArrayList<Favorite> getTvs() {
+    private ArrayList<Favorite> getTvs() {
         return tvs;
     }
 

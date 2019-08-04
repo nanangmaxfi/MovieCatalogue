@@ -35,8 +35,6 @@ import retrofit2.Response;
 
 public class ReminderReceiver extends BroadcastReceiver {
     private final static String TAG = ReminderReceiver.class.getSimpleName();
-
-    private String TIME_FORMAT = "HH:mm";
     private ApiInterface apiInterface;
     private ConfigUtils configUtils = ConfigUtils.getInstance();
 
@@ -46,10 +44,7 @@ public class ReminderReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String type = intent.getStringExtra(ItemValue.EXTRA_TYPE);
-        //String message = intent.getStringExtra(ItemValue.EXTRA_MESSAGE);
-        //String title = intent.getStringExtra(ItemValue.EXTRA_TITLE);
-        //int notifId = type.equalsIgnoreCase(ItemValue.DAILY_REMINDER) ? ItemValue.ID_DAILY : ItemValue.ID_RELEASE;
+        String type = intent.getStringExtra(ItemValue.EXTRA_TYPE);;
 
         if (type.equals(ItemValue.DAILY_REMINDER)){
             String title = context.getResources().getString(R.string.app_name);
@@ -67,6 +62,7 @@ public class ReminderReceiver extends BroadcastReceiver {
     }
 
     public void setAlarm(Context context, String type, String time, int idNotif){
+        String TIME_FORMAT = "HH:mm";
         if (isDateInvalid(time, TIME_FORMAT))
             return;
         //Log.d(TAG,"set ALARM "+time);
@@ -74,7 +70,7 @@ public class ReminderReceiver extends BroadcastReceiver {
         Intent intent = new Intent(context, ReminderReceiver.class);
         intent.putExtra(ItemValue.EXTRA_TYPE, type);
 
-        String timeArray[] = time.split(":");
+        String[] timeArray = time.split(":");
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(timeArray[0]));

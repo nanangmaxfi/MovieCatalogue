@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Favorite Movie</string>
+    <string name="movie">Film</string>
+    <string name="tv_show">Serial TV</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="poster">Poster</string>
+    <string name="result_not_found">Data tidak ditemukan :(</string>
+    <string name="favorite_list_empty">Daftar film favorit masih kosong</string>
+</resources>

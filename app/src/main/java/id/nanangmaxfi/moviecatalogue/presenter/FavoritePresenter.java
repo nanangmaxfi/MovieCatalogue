@@ -8,7 +8,6 @@ import id.nanangmaxfi.moviecatalogue.view.FavoriteView;
 import static id.nanangmaxfi.moviecatalogue.app.MyApp.db;
 
 public class FavoritePresenter {
-    private final static String TAG = FavoritePresenter.class.getSimpleName();
     private FavoriteView view;
 
     public FavoritePresenter(FavoriteView view) {
@@ -16,8 +15,8 @@ public class FavoritePresenter {
     }
 
     public void load(){
-        ArrayList<Favorite> favMovie = new ArrayList<Favorite>(db.favoriteDao().getFavorite(KeyString.MOVIE.getValue()));
-        ArrayList<Favorite> favTv = new ArrayList<Favorite>(db.favoriteDao().getFavorite(KeyString.TV_SHOW.getValue()));
+        ArrayList<Favorite> favMovie = new ArrayList<>(db.favoriteDao().getFavorite(KeyString.MOVIE.getValue()));
+        ArrayList<Favorite> favTv = new ArrayList<>(db.favoriteDao().getFavorite(KeyString.TV_SHOW.getValue()));
 
         view.showList(favMovie, favTv);
     }

@@ -10,16 +10,6 @@ public class SettingPreference {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public static void setData(Context context, String key, String value){
-        SharedPreferences.Editor editor = getSharedPreference(context).edit();
-        editor.putString(key,value);
-        editor.apply();
-    }
-
-    public static String getData(Context context, String key){
-        return getSharedPreference(context).getString(key,null);
-    }
-
     public static void setBool(Context context, String key, boolean value){
         SharedPreferences.Editor editor = getSharedPreference(context).edit();
         editor.putBoolean(key,value);

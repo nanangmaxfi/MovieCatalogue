@@ -3,24 +3,33 @@ package id.nanangmaxfi.moviecatalogue.database;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-@Entity
+import java.util.Objects;
+
+@Entity(tableName = Favorite.TABLE_NAME)
 public class Favorite implements Parcelable {
+    public static final String TABLE_NAME = "favorites";
+    private static final String COLUMN_ID = "id";
+    private static final String COLUMN_TITLE = "title";
+    private static final String COLUMN_DESCRIPTION = "description";
+    private static final String COLUMN_POSTER = "poster";
+    private static final String COLUMN_TYPE = "type";
 
     @NonNull
     @PrimaryKey
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = COLUMN_ID)
     private String id;
-    @ColumnInfo(name = "title")
+    @ColumnInfo(name = COLUMN_TITLE)
     private String title;
-    @ColumnInfo(name = "description")
+    @ColumnInfo(name = COLUMN_DESCRIPTION)
     private String description;
-    @ColumnInfo(name = "poster")
+    @ColumnInfo(name = COLUMN_POSTER)
     private String poster;
-    @ColumnInfo(name = "type")
+    @ColumnInfo(name = COLUMN_TYPE)
     private String type;
 
     public String getId() {
@@ -63,6 +72,16 @@ public class Favorite implements Parcelable {
         this.type = type;
     }
 
+    public static Favorite fromContentValue(ContentValues values){
+        final Favorite favorite = new Favorite();
+        favorite.setId(values.getAsString(COLUMN_ID));
+        favorite.setTitle(values.getAsString(COLUMN_TITLE));
+        favorite.setDescription(values.getAsString(COLUMN_DESCRIPTION));
+        favorite.setPoster(values.getAsString(COLUMN_POSTER));
+        favorite.setType(values.getAsString(COLUMN_TYPE));
+        return favorite;
+    }
+
 
     @Override
     public int describeContents() {
@@ -81,8 +100,8 @@ public class Favorite implements Parcelable {
     public Favorite() {
     }
 
-    protected Favorite(Parcel in) {
-        this.id = in.readString();
+    private Favorite(Parcel in) {
+        this.id = Objects.requireNonNull(in.readString());
         this.title = in.readString();
         this.description = in.readString();
         this.poster = in.readString();

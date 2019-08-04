@@ -16,7 +16,6 @@ import id.nanangmaxfi.moviecatalogue.notification.ReminderReceiver;
 
 public class SettingActivity extends AppCompatActivity {
     private final static String TAG = SettingActivity.class.getSimpleName();
-    private Switch swRelease, swDaily;
     private ReminderReceiver reminderReceiver;
 
     @Override
@@ -35,6 +34,7 @@ public class SettingActivity extends AppCompatActivity {
         TextView tlbTitle = findViewById(R.id.toolbar_title);
         tlbTitle.setText(getString(R.string.setting));
 
+        Switch swRelease, swDaily;
         swRelease = findViewById(R.id.sw_release);
         swDaily = findViewById(R.id.sw_daily);
         reminderReceiver = new ReminderReceiver();

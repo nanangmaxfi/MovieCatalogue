@@ -1,15 +1,11 @@
 package id.nanangmaxfi.moviecatalogue;
 
-import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
@@ -21,11 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
 
 import id.nanangmaxfi.moviecatalogue.adapter.GenreAdapter;
-import id.nanangmaxfi.moviecatalogue.database.Favorite;
 import id.nanangmaxfi.moviecatalogue.helper.ConfigUtils;
 import id.nanangmaxfi.moviecatalogue.model.GetDetailMovie;
 import id.nanangmaxfi.moviecatalogue.presenter.DetailPresenter;
@@ -34,10 +27,8 @@ import id.nanangmaxfi.moviecatalogue.view.DetailView;
 import static id.nanangmaxfi.moviecatalogue.app.MyApp.db;
 
 public class DetailActivity extends AppCompatActivity implements DetailView {
-    private final static String TAG = DetailActivity.class.getSimpleName();
     public static final String EXTRA_MOVIE = "extra_movie";
     public static final String DATA = "data_detail";
-    private final String imageURL = "https://image.tmdb.org/t/p/w500";
     private DetailPresenter presenter;
     private ImageView imgPoster;
     private TextView txtTitle, txtDesc, txtDate, txtRating, txtBudget, txtRevenue;
@@ -133,6 +124,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     @Override
     public void show(GetDetailMovie movie) {
         this.movie = movie;
+        final String imageURL = "https://image.tmdb.org/t/p/w500";
         txtTitle.setText(movie.getTitle());
         txtRating.setText(movie.getRating());
         txtBudget.setText(configUtils.formatCurrency(movie.getBudget()));

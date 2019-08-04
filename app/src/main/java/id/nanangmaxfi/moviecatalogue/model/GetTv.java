@@ -19,17 +19,6 @@ public class GetTv implements Parcelable {
     @SerializedName("id")
     private String id;
 
-    public GetTv() {
-    }
-
-    public GetTv(String title, String overview, String releaseDate, String vote, String poster, String id) {
-        this.title = title;
-        this.overview = overview;
-        this.releaseDate = releaseDate;
-        this.vote = vote;
-        this.poster = poster;
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -95,7 +84,7 @@ public class GetTv implements Parcelable {
         dest.writeString(this.id);
     }
 
-    protected GetTv(Parcel in) {
+    private GetTv(Parcel in) {
         this.title = in.readString();
         this.overview = in.readString();
         this.releaseDate = in.readString();

@@ -22,7 +22,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
         this.genre = genre;
     }
 
-    public ArrayList<Genre> getGenre() {
+    private ArrayList<Genre> getGenre() {
         return genre;
     }
 

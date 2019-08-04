@@ -1,14 +1,6 @@
 package id.nanangmaxfi.moviecatalogue.presenter;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Environment;
 import android.util.Log;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 
 import id.nanangmaxfi.moviecatalogue.database.Favorite;
 import id.nanangmaxfi.moviecatalogue.helper.KeyString;

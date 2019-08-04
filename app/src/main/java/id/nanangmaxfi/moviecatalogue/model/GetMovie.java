@@ -20,17 +20,6 @@ public class GetMovie implements Parcelable {
     @SerializedName("id")
     private String id;
 
-    public GetMovie() {
-    }
-
-    public GetMovie(String title, String overview, String releaseDate, String vote, String poster, String id) {
-        this.title = title;
-        this.overview = overview;
-        this.releaseDate = releaseDate;
-        this.vote = vote;
-        this.poster = poster;
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -96,7 +85,7 @@ public class GetMovie implements Parcelable {
         dest.writeString(this.id);
     }
 
-    protected GetMovie(Parcel in) {
+    private GetMovie(Parcel in) {
         this.title = in.readString();
         this.overview = in.readString();
         this.releaseDate = in.readString();

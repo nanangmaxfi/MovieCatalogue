@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <permission android:name="id.nanangmaxfi.moviecatalogue.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="id.nanangmaxfi.moviecatalogue.WRITE_DATABASE" android:protectionLevel="normal"/>
 
     <application
         android:name=".app.MyApp"
@@ -46,6 +48,13 @@
             android:name=".notification.ReminderReceiver"
             android:enabled="true"
             android:exported="true" />
+        <provider
+            android:authorities="id.nanangmaxfi.moviecatalogue"
+            android:name="id.nanangmaxfi.moviecatalogue.provider.FavoriteProvider"
+            android:exported="true"
+            android:enabled="true"
+            android:readPermission="id.nanangmaxfi.moviecatalogue.READ_DATABASE"
+            android:writePermission="id.nanangmaxfi.moviecatalogue.WRITE_DATABASE" />
     </application>
 
 </manifest>

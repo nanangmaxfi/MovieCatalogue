@@ -27,20 +27,7 @@ public class GetDetailMovie implements Parcelable {
     @SerializedName("id")
     private String id;
 
-    public GetDetailMovie() {
-    }
 
-    public GetDetailMovie(String title, String overview, String releaseDate, String rating, String poster, String budget, String revenue, ArrayList<Genre> genres, String id) {
-        this.title = title;
-        this.overview = overview;
-        this.releaseDate = releaseDate;
-        this.rating = rating;
-        this.poster = poster;
-        this.budget = budget;
-        this.revenue = revenue;
-        this.genres = genres;
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -133,7 +120,7 @@ public class GetDetailMovie implements Parcelable {
         dest.writeString(this.id);
     }
 
-    protected GetDetailMovie(Parcel in) {
+    private GetDetailMovie(Parcel in) {
         this.title = in.readString();
         this.overview = in.readString();
         this.releaseDate = in.readString();

@@ -29,8 +29,6 @@ import id.nanangmaxfi.moviecatalogue.R;
 import id.nanangmaxfi.moviecatalogue.SettingActivity;
 import id.nanangmaxfi.moviecatalogue.adapter.FavoriteAdapter;
 import id.nanangmaxfi.moviecatalogue.database.Favorite;
-import id.nanangmaxfi.moviecatalogue.model.GetMovie;
-import id.nanangmaxfi.moviecatalogue.model.GetTv;
 import id.nanangmaxfi.moviecatalogue.presenter.FavoritePresenter;
 import id.nanangmaxfi.moviecatalogue.view.FavoriteView;
 

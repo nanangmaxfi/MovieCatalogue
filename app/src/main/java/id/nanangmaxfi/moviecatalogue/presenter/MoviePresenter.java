@@ -1,6 +1,5 @@
 package id.nanangmaxfi.moviecatalogue.presenter;
 
-import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.Log;
 

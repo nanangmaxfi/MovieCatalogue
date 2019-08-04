@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Favorite Movie</string>
+    <string name="movie">Movie</string>
+    <string name="tv_show">TV Show</string>
+    <string name="poster">Poster</string>
+    <string name="result_not_found">Result not found :(</string>
+    <string name="favorite_list_empty">The list of favorite movies is still empty</string>
+</resources>
